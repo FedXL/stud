@@ -1,0 +1,33 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+
+<button><a href="/result1/."> Random</a>> </button>
+<button> Первая деталь самая легкая </button>
+
+
+<table border="2px">
+
+
+		<tr>
+			<td>Номер детали</td>
+			{% for i in st %}
+			<td>Станок - {{i}}</td>
+			{% endfor %}
+		</tr>
+			{% for i in date %}
+			{% with forloop.counter0 as row_number %}
+		<tr>
+			<td>Деталь - {{forloop.counter0}}</td>
+			{% for j in i %}
+			<td> {{j}}</td>
+			{% endfor %}
+		</tr>
+			{% endwith %}
+			{% endfor %}
+
+</table>
+
+
+
+{% endblock %}

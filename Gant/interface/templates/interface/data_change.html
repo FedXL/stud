@@ -1,0 +1,35 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<h1>{{title}}</h1>
+<form action="/experiment/." name="form" method="get">
+	<table border="2px">
+		<thead>
+		<tr>
+			<th colspan="{{sr_num}}">Сохранить текущую генерацию параметров?</th>
+		</tr>
+
+		</thead>
+
+
+		<tr>
+			<td>Номер детали</td>
+			{% for i in st %}
+			<td>Станок - {{i}}</td>
+			{% endfor %}
+		</tr>
+
+			{% for i in date %}
+			{% with forloop.counter0 as row_number %}
+		<tr>
+			<td>Деталь - {{forloop.counter0}}</td>
+			{% for j in i %}
+			<td><input id="id{{row_number}},{{forloop.counter0}}" name="{{row_number}},{{forloop.counter0}}" type="text" value="{{j}}"></td>
+			{% endfor %}
+		</tr>
+			{% endwith %}
+			{% endfor %}
+
+	</table>
+<input type="submit" name="form" value="Сохранить">
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'interface/base.html' %}
+{% block content%}
+
+<h1>{{title}}</h1>
+
+<div>
+<form action="/data/." method="get">
+
+	<div>
+    <label for="detail"> Число деталей </label>
+    <input id="detail" type="Number" name="st1" value="Detail">
+	</div>
+	<div>
+	<label for="stanki"> Число станков </label>
+    <input id="stanki" type="Number" name="st2" value="Stanki">
+	</div>
+    <input type="submit" value="Ввод"><input type="reset" value='Очистить'>
+</form>
+</div>
+{% endblock%}
