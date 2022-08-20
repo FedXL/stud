@@ -1,0 +1,115 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+{%load static%}
+<link rel="stylesheet" , href = "{% static 'interface/css/result.css'%}">
+<br>
+<div>
+{{amassiv}}
+    <br>
+    {{turn_massiv}}
+</div>
+
+<div >
+<canvas id = "canvas_plot" width="10000" height = "500"></canvas>
+</div>
+
+<table border="2">
+    <tr>
+        <th>станки</th>
+        <th>коэффициент загруженности</th>
+    </tr>
+    {%for i in data2.values%}
+    <tr>
+        <td>Станок-{{forloop.counter}} </td>
+        <td>{{i.coefficient}}%</td>
+    </tr>
+    {%endfor%}
+</table>
+
+
+<script type="text/javascript" >
+
+const lvl_height = 75;
+
+const mydata = "{{data}}";
+const v = "{{vocabulary}}";
+
+const vo = v.replace(/&quot;/g,'"');
+const vocabulary = JSON.parse(vo);
+
+console.log(vocabulary);
+const new_height= vocabulary.tools*lvl_height;
+document.getElementById('canvas_plot').height = new_height;
+const canvasPlot = document.getElementById('canvas_plot');
+const ctx = canvasPlot.getContext('2d');
+
+var colors = ['white','blue','yellow','purple','orange','red','green','grey','lime','fuchsia',
+'maroon','navy'];
+
+ctx.strokeStyle = 'black';
+
+ctx.font = '20px Arial'
+ctx.fillText('Test',300,400);
+
+var mydata2 = "{{data}}";
+
+//Объект JavaScript person
+//JSON.parse(data.replace(/&quot;/g,'"'));
+
+var zzz = mydata.replace(/&quot;/g,'"');
+
+
+var data = JSON.parse(zzz);
+
+
+function draw(x,y) {
+ctx.moveTo(x,y);
+ctx.lineTo(x,y+25);
+ctx.lineTo(x+25,y+25);
+ctx.lineTo(x+25,y);
+ctx.lineTo(x,y);
+ctx.stroke();
+};
+
+function draw_up_and_down(x,y){
+
+ctx.moveTo(x+25,y+25);
+ctx.lineTo(x,y+25);
+ctx.stroke();
+}
+
+
+
+
+var y = 50;
+let n = 1;
+for (var i in data) {
+    let x = 100;
+    ctx.font = '20px Arial'
+    ctx.fillStyle = "black";
+    ctx.textAlign = "end";
+    ctx.fillText("Станок- "+n+" ",100, y+20);
+
+    for (var j in data[i].date){
+        let color = colors[data[i].date[j]];
+        draw(x,y);
+        ctx.fillStyle = color;
+        ctx.fillRect(x,y,25,25);
+        ctx.fillStyle = "black";
+        ctx.font = '18px Arial';
+        ctx.textAlign = "end";
+        if (data[i].date[j]==0){}
+        else{
+        ctx.fillText(data[i].date[j],x+15,y+20);
+        }
+
+
+    x  += 25;
+}
+    y += 50;
+    n +=1;
+}
+
+</script>
+
+{% endblock %}

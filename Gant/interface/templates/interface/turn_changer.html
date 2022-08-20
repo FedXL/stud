@@ -1,0 +1,69 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<h1>Заглушка на выбор очереди</h1>
+<div>
+{% for i in submenu %}
+<a href="{% url i.url_name %}">{{i.title}}</a>
+{% endfor %}
+</div>
+<br>
+<br>
+
+<form action="{%url 'turn' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <p>Выбор метода для расчёта очередности подачи деталей на линию:</p>
+    </div>
+    <div>
+    <input type="radio" value="spt" name="spt+ltp" id = 'spt1'>
+    <label>SPT</label>
+    <input type="radio" value="ltp" name="spt+ltp" id = 'lpt1'>
+    <label>LTP</label>
+    </div>
+    <div>
+    <input type="radio" value="lukr" name="lukr+mwkr">
+    <label>LUKR</label>
+    <input type="radio" value="mwkr" name="lukr+mwkr">
+    <label>MWKR</label>
+    </div>
+    <div>
+    <input type="radio" value="fopnr" name="fopnr+anti">
+    <label>FOPNR</label>
+    <input type="radio" value="antifopnr" name="fopnr+anti">
+    <label>ANTIFOPNR</label>
+    </div>
+    <div>
+    <input type="radio" value="random" name = "random">
+    <label>RANDOM</label>
+    </div>
+    <div>
+    <button type="submit">Рассчитать очередность</button>
+    <button type="reset">Сброс настроек</button>
+    </div>
+</form>
+
+<br>
+<br>
+
+Сет данных:
+<table border="2px">
+    <tr>
+    <th>Детали/Станки</th>
+        {%for n in context.number_st%}
+    <th>Ст.-{{n}}</th>
+        {%endfor%}
+        </tr>
+    {%for n in context.details%}
+    <tr>
+    <td>деталь-{{forloop.counter0}}</td>
+        {%for j in n%}
+    <td>{{j}}</td>
+        {%endfor%}
+
+    </tr>
+    {%endfor%}
+
+</table>
+
+
+{% endblock %}

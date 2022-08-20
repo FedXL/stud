@@ -4,7 +4,7 @@
 <h1>{{title}}</h1>
 
 <div>
-<form action="/data/." method="get">
+<form action="{%url 'data_info'%}" method="get">
 
 	<div>
     <label for="detail"> Число деталей </label>
@@ -13,6 +13,10 @@
 	<div>
 	<label for="stanki"> Число станков </label>
     <input id="stanki" type="Number" name="st2" value="Stanki">
+	</div>
+	<div>
+	<label for = "batch"> Число партий   </label>
+	<input id = "batch" type="Number" name="st3" value="Batch">
 	</div>
     <input type="submit" value="Ввод"><input type="reset" value='Очистить'>
 </form>

@@ -1,0 +1,34 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+<h1>Таблица рейтинов</h1>
+<div>
+{% for i in submenu %}
+<a href="{% url i.url_name %}">{{i.title}}</a> |
+{% endfor %}
+</div>
+<br>
+<div>
+ключевые методы {{methods}}
+</div>
+<table border="2">
+    <tr>
+        <th>Детали/методы</th>
+       {%for i in methods%}
+<th>{{i}}</th>
+        {%endfor%}
+        <th>сумма</th>
+    </tr>
+{%for i,j in rdata.items%}
+    <tr>
+        <td>Деталь - {{i}}</td>
+        {%for m,n in j.items%}
+        <td>{{n}}</td>
+        {%endfor%}
+    </tr>
+    {%endfor%}
+</table>
+
+<form action="{%url 'result'%}">
+<button >Поехали дальше</button>
+</form>
+{% endblock %}

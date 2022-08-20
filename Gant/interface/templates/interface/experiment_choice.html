@@ -2,7 +2,7 @@
 {% block content %}
 <h1>{{title}}</h1>
 
-<button><a href="/result1/."> Random</a>> </button>
+<button><a href="{%url 'result1'%}"> Random</a>> </button>
 <button> Первая деталь самая легкая </button>
 
 
@@ -10,7 +10,9 @@
 
 
 		<tr>
-			<td>Номер детали</td>
+			<td>порядок</td>
+			<td>детали/станки</td>
+
 			{% for i in st %}
 			<td>Станок - {{i}}</td>
 			{% endfor %}
@@ -18,7 +20,9 @@
 			{% for i in date %}
 			{% with forloop.counter0 as row_number %}
 		<tr>
+			<td>{{row_number}}</td>
 			<td>Деталь - {{forloop.counter0}}</td>
+
 			{% for j in i %}
 			<td> {{j}}</td>
 			{% endfor %}
@@ -27,6 +31,7 @@
 			{% endfor %}
 
 </table>
+<button>Х</button>
 
 
 

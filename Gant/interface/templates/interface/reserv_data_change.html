@@ -11,6 +11,7 @@
 
 		</thead>
 
+
 		<tr>
 			<td>Номер детали</td>
 			{% for i in st %}
@@ -18,19 +19,14 @@
 			{% endfor %}
 		</tr>
 			{% for i in date %}
-			{% with forloop.counter0 as row_number %}
 
 		<tr>
 			<td>деталь_{{forloop.counter0}}</td>
 			{% for j in i %}
-			<td><input type="text" value="{{j}}" name = '{{row_number}},{{forloop.counter0}}'></td>
+			<td><input type="text" value="{{j}}" name = '01'></td>
 			{% endfor %}
-			<td><input type="button" value="X" name = 'del,{{row_number}},{{forloop.counter0}}'></td>
 		</tr>
-			{% endwith %}
 			{% endfor %}
-
-		<th colspan="{{sr_num}}"><input type="button" value="Добавить деталь", name="add_detail"></th>
 	</table>
 <button>сохранить</button>
 

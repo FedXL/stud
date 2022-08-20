@@ -1,0 +1,53 @@
+{%extends 'interface/base.html'%}
+{% block content %}
+
+<h1>таблица Детали-очередь</h1>
+<div>
+{% for i in submenu %}
+<a href="{% url i.url_name %}">{{i.title}}</a> |
+{% endfor %}
+</div>
+<br>
+{{methods}}
+
+<div>
+    {{turn1}}
+</div>
+
+<div>
+    Используемые методы:
+    {% for i in turn3%}
+    <br>
+    {{i}}
+    {%endfor%}
+</div>
+<form>
+<table border="2">
+    <tr>
+        <th colspan="{{sr_num}}">Таблица очередность-детали</th>
+    </tr>
+
+    <tr>
+    <th>Детали</th>
+    <th>Очередность</th>
+    {%for i in det_val%}
+    <th>Станок-{{forloop.counter0}}</th>
+    {%endfor%}
+    </tr>
+
+        {% for i,j in det_val.items %}
+        <tr>
+        <td>Деталь - {{forloop.counter0}}</td>
+            <td><input value="{{i}}"></td>
+            {% for z in j%}
+            <td>{{z}}</td>
+            {% endfor %}
+        </tr>
+        {%endfor%}
+</table>
+</form>
+<button>Сохранить изменения</button>
+<form action="{%url 'result'%}">
+<button >Поехали дальше</button>
+</form>
+{% endblock %}
