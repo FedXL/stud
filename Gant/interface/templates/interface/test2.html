@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+{% load static%}
+<body>
+<h1>HI</h1>
+<form action="#" method="get">
+
+<table class="super" id ="super_table">
+    <thead>
+  <tr>
+    <th>details</th>
+    <th>XXXX</th>
+    <th>YYYY</th>
+    <th>удалить</th>
+  </tr>
+    </thead>
+    <tbody>
+  <tr>
+   <td> detail-0 </td>
+   <td><input id="input_0,0" value="150"></input></td>
+   <td><input id="input_0,1" value="150"></input></td>
+    <td><button> del </button> </td>
+  </tr>
+    <tr class="super_tr">
+   <td> detail-1s </td>
+   <td><input class="zivert" id="input_1,0" value="150"></input></td>
+   <td><input id="input_1,1" value="150"></input></td>
+    <td><button> del </button> </td>
+  </tr>
+    </tbody>
+</table>
+  <ul>
+     <input type="submit">
+<li><button onclick="addRows()">добавить деталь</button></li>
+
+ </ul>
+</form>
+<script type="text/javascript" src="{% static 'interface/js/test.js' %}"></script>
+</body>
+</html>

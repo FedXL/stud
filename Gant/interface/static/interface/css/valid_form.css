@@ -1,0 +1,22 @@
+ input{
+     border: 1px solid #3a374c;
+ }
+
+
+ form{
+     width: 1000px;
+     margin-left: auto;
+     margin-right: auto;
+     box-shadow: 0 4px 16px 4px #ccc;
+     border: 1px #696a9f solid;
+     padding: 15px 15px 15px 15px;
+ }
+
+  button {
+      border: 1px solid #3a374c;
+      background-color: #696a9f;
+      color: white;
+      font-size: 20px;
+      padding: 10px 10px 10px 10px;
+
+  }

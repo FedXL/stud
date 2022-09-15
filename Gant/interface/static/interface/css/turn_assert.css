@@ -1,0 +1,70 @@
+ table {
+     border: 1px solid #3a374c;
+     border-collapse: collapse;
+     margin: 20px auto 50px;
+ }
+
+ td,th {
+     padding: 0 5px 0 5px;
+    border: 1px solid #3a374c;
+    background-color: white;
+    min-width: 30px;
+    text-align: center;
+     max-width: max-content;
+     background-color: #ffffff;
+
+}
+
+
+  .input_td{
+     text-align: center;
+
+      max-width: 20px;
+ }
+ .special_td{
+     background-color: #aaaace;
+     border: 2px solid #3a374c;
+ }
+
+ .input_button{
+    margin: auto auto auto 10px;
+    padding: 10px 20px;
+	 border: none;
+	 border-radius: 5px;
+	 color: white;
+	 background: rgba(52,79,121);
+	 outline: none;
+	 cursor: pointer;
+	 transition: 0.3s;
+     width: 100%;
+ }
+
+.input_button:focus,
+.input_button:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+
+}
+
+ .table_button{
+     background-color: #696a9f;
+     color: white;
+     padding: 3px 3px 3px 3px;
+     width: 100%;
+    font-size: 15px;
+ }
+.table_button:focus,
+.table_button:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+ }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}

@@ -1,12 +1,20 @@
 {%extends 'interface/base.html'%}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'interface/css/turn_assert.css'%}" type="text/css">
+<div class="BoxMaster">
 
 <h1>таблица Детали-очередь</h1>
-<div>
+<ul>
 {% for i in submenu %}
-<a href="{% url i.url_name %}">{{i.title}}</a> |
+        <li><button class="a_button"> <a href="{%url i.url_name%}">{{i.title}}</a></button></li>
 {% endfor %}
-</div>
+</ul>
+<br>
+{% for i in submenu2 %}
+        <button class="a_button"> <a href="{%url i.url_name%}">{{i.title}}</a></button>
+{% endfor %}
+
 <br>
 {{methods}}
 
@@ -14,40 +22,49 @@
     {{turn1}}
 </div>
 
-<div>
-    Используемые методы:
-    {% for i in turn3%}
-    <br>
-    {{i}}
-    {%endfor%}
-</div>
-<form>
-<table border="2">
+<form action="{%url 'save'%}" method="post">
+{% csrf_token %}
+<table >
     <tr>
-        <th colspan="{{sr_num}}">Таблица очередность-детали</th>
+        <th colspan="{{sr_num}}">Методы:
+                {% for i in turn3%}
+                 <span>{{i}}</span>
+                {%endfor%}
+        </th>
     </tr>
 
     <tr>
     <th>Детали</th>
     <th>Очередность</th>
-    {%for i in det_val%}
-    <th>Станок-{{forloop.counter0}}</th>
+    {%for i in tools_series%}
+    <th>Ст-{{forloop.counter0}}</th>
     {%endfor%}
     </tr>
 
         {% for i,j in det_val.items %}
         <tr>
-        <td>Деталь - {{forloop.counter0}}</td>
-            <td><input value="{{i}}"></td>
+        <td>Деталь-{{forloop.counter0}}
+        <input type="hidden" name="details" value="{{forloop.counter0}}"></td>
+            <td class="special_td" ><input required="required" type="number" min="0" class="input_td" name="turns" value="{{i}}"></td>
             {% for z in j%}
             <td>{{z}}</td>
             {% endfor %}
         </tr>
         {%endfor%}
+        <tfoot>
+        <tr>
+           <td colspan="{{sr_num}}">
+               <input type="hidden" name="table" value="details-turn">
+             <button type="submit" class="table_button">Сохранить изменения</button>
+           </td>
+        </tr>
+        </tfoot>
 </table>
 </form>
-<button>Сохранить изменения</button>
+
 <form action="{%url 'result'%}">
-<button >Поехали дальше</button>
+<button class="input_button" >Меня всё устраивает, Поехали дальше.</button>
 </form>
+    <div class="pusher"></div>
+    </div>
 {% endblock %}

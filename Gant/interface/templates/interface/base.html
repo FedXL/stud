@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="ru-ru">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="{% static 'interface/css/reset.css'%}" type="text/css">
+	<link rel="stylesheet" href="{% static 'interface/css/main.css'%}" type="text/css">
+	
 	<title>{{title}}</title>
 </head>
 <body>
@@ -11,20 +15,49 @@
 {% block mainmenu %}
 
 
-<header>
-	<nav>
-	<a href = "{% url 'start_page'%}">
-	<img src = "{% static 'interface/images/logo.png' %}" alt = "logo" width ="60", height="70"></a>
-	{% for m in menu %}
-	<a href="{% url m.url_name %}">{{m.title}}</a> |
-	{% endfor %}
-	</nav>
+	<header>			
+				<a href = "{% url 'start_page'%}">
+				<img class="logo" src = "{% static 'interface/images/logo.png' %}">
+			</a>
+			<div>
+				<ul class="mnu">
+				{% for m in menu %}
+				<li>
+					<a href="{% url m.url_name %}">{{m.title}}</a>
+				</li>
+				{% endfor %}
+				</ul>
+			</div>
+			<div class ="btns">
+				{% if request.user.is_authenticated %}
 
-</header>
+				<a class="btn_exit"href="{% url 'logout' %}">Выход</a>
+
+
+				{% else %}
+				<a class="btn_register" href="{% url 'register' %}">Регистрация</a>
+				<a class="btn_enter" href="{% url 'login' %}">Вход</a>
+				{% endif%}
+			</div>
+	</header>
+
 {% endblock %}
 {% block content %}
 {% endblock %}
+{% block footer %}
 
-
+<footer >
+	<div class="f_cont" >
+		<div class="c_cont">
+			<a href="https://github.com/FedXL/stud.git">
+				<img class="git" src="{% static 'interface/images/minigit.png'%}" height="50" width="80" >
+			</a>
+		</div>
+		<div class="c_cont">
+		<a href="#">Контакты</a>
+		</div>
+	</div>
+</footer>
+{% endblock %}
 </body>
 </html>

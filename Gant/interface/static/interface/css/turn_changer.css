@@ -1,0 +1,60 @@
+ form {
+     width: 500px;
+     margin-left: auto;
+     margin-right: auto;
+     padding: 32px;
+     border-radius: 10px;
+     box-shadow: 0 4px 16px #ccc;
+     letter-spacing: 1px;
+
+ }
+
+
+.input_button{
+    margin: auto auto auto 10px;
+    padding: 10px 20px;
+	 border: none;
+	 border-radius: 5px;
+	 color: white;
+	 background: rgba(52,79,121);
+	 outline: none;
+	 cursor: pointer;
+	 transition: 0.3s;
+ }
+
+.input_button:focus,
+.input_button:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+}
+
+ table {
+     border: 2px solid #3a374c;
+     border-collapse: collapse;
+     margin: 20px auto 50px;
+ }
+
+ td {
+     padding: 0 5px 0 5px;
+    border: 1px solid #3a374c;
+    background-color: white;
+    min-width: 30px;
+    text-align: center;
+     max-width: max-content;
+
+}
+
+ th {
+     border: 1px solid #3a374c ;
+     padding-left: 5px;
+     padding-right: 5px;
+ }
+ .table_cont{
+     margin-left: auto;
+     margin-right: auto;
+     border: 1px solid #3a374c;
+     max-width: 1100px;
+     max-height: 600px;
+     overflow: scroll;
+
+ }
+

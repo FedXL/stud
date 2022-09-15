@@ -1,16 +1,24 @@
 {% extends 'interface/base.html' %}
 {% block content %}
-<h1>Таблица рейтинов</h1>
-<div>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'interface/css/turn_assert.css'%}" type="text/css">
+<div class="BoxMaster">
+<h1>Таблица рейтингов</h1>
+
+
+<ul>
 {% for i in submenu %}
-<a href="{% url i.url_name %}">{{i.title}}</a> |
+        <li><button class="a_button"> <a href="{%url i.url_name%}">{{i.title}}</a></button></li>
 {% endfor %}
-</div>
+</ul>
 <br>
-<div>
-ключевые методы {{methods}}
-</div>
-<table border="2">
+{% for i in submenu2 %}
+        <button class="a_button"> <a href="{%url i.url_name%}">{{i.title}}</a></button>
+{% endfor %}
+
+
+<table >
     <tr>
         <th>Детали/методы</th>
        {%for i in methods%}
@@ -29,6 +37,8 @@
 </table>
 
 <form action="{%url 'result'%}">
-<button >Поехали дальше</button>
+<button class="input_button" >Меня всё устраивает, Поехали дальше.</button>
 </form>
+    <div class="pusher"></div>
+    </div>
 {% endblock %}

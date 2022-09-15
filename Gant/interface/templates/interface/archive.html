@@ -1,0 +1,93 @@
+{% extends 'interface/base.html' %}
+{% block content %}
+{% load static %}
+<div class="BoxMaster">
+<link rel="stylesheet" href="{% static 'interface/css/archive.css'%}" type="text/css">
+
+<h1>{{texts.h1}}</h1>
+<input type="hidden" id="For_JS_ChangeURL" value="{% url 'archive'%}">
+{%if request.user.is_authenticated%}
+
+    <div class="container" >
+        <ul>
+            {% for i in context%}
+
+                <div>
+                    <form action="{% url 'data_info'%}" method="get">
+                        {% csrf_token %}
+                        <input type="hidden" name="record_id" value="{{i.id}}">
+                        <li>
+                            <button type="button" onclick="OpenInput(this)" id="{{forloop.counter}}"
+                            style="border: #3a374c solid 1px">
+                                {{i.explain}}
+                                {{i.method}}
+                                {{i.rating}}%
+                                {{i.details}}
+                                {{i.tools}}
+                                {{i.series}}
+                            </button>
+                            <button type="submit" style="background: #3a374c">ooo</button>
+                            <button style = "background: #696a9f" type="button" onclick = "ChangeURL(this)" id="R{{forloop.counter}}">xxx</button>
+                        </li>
+                    </form>
+                </div>
+                <div hidden id="hdiv{{forloop.counter}}" class="dataCont" style="border: #3a374c solid 1px">
+                    <ul>
+                        {% for z in i.data%}
+                        <li>Деталь-{{forloop.counter0}} {{z}}</li>
+                        {%endfor%}
+                    </ul>
+                </div>
+
+            {% endfor %}
+        </ul>
+
+    </div>
+{% else %}
+    <div>
+        <p>
+            Доступ к архиву предоставлен только авторизированным пользователям
+        </p>
+
+    </div>
+
+{% endif %}
+
+<div class="pusher">
+
+</div>
+
+</div>
+
+
+<script>
+    function OpenInput(r){
+        var button = r.id;
+        console.log(button);
+        var input = document.getElementById(`hdiv${button}`);
+        if (input.hidden === true){
+        input.hidden = false;
+        }
+        else if (input.hidden === false){
+        input.hidden = true
+        }
+        else {
+            console.log('Чето пошло не так в OpenInput')
+        }
+    }
+
+    function ChangeURL(r) {
+        var button = r.id;
+        console.log(button)
+        var form = document.getElementById(button).parentNode.parentNode;
+        form.action = document.getElementById('For_JS_ChangeURL').value
+        var button2 = document.getElementById(button).previousSibling.previousSibling;
+        console.log(button2)
+        button2.click();
+
+
+
+    }
+
+</script>
+{% endblock %}

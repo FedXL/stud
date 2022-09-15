@@ -1,24 +1,37 @@
 {% extends 'interface/base.html' %}
 {% block content%}
+{% load static %}
+<link rel="stylesheet" href="{% static 'interface/css/input.css'%}" type="text/css">
+<div class="BoxMaster">
+<div class="input_data">
+<form class="input_form" action="{%url 'data_info'%}" method="get">
+	<h1>{{title}}: </h1>
 
-<h1>{{title}}</h1>
+	<div class="form_group">
+		<input class="inp__detail" id="detail" type="Number" name="st1"
+			  required="required" min="2" max="50" value="Detail" placeholder="Введите число деталей">
 
-<div>
-<form action="{%url 'data_info'%}" method="get">
+	</div>
+	<div class="form_group">
 
-	<div>
-    <label for="detail"> Число деталей </label>
-    <input id="detail" type="Number" name="st1" value="Detail">
+
+    	<input class="form_input" id="stanki" type="Number" name="st2"
+			  required="required" value="Stanki" min="2" max="50" placeholder="Введите число станков">
+
 	</div>
-	<div>
-	<label for="stanki"> Число станков </label>
-    <input id="stanki" type="Number" name="st2" value="Stanki">
+	<div class="form_group">
+
+		<input id = "batch" type="Number" name="st3" value="Batch"
+			  required="required" min="1" max="10" placeholder="Введите число партий">
+
 	</div>
-	<div>
-	<label for = "batch"> Число партий   </label>
-	<input id = "batch" type="Number" name="st3" value="Batch">
-	</div>
-    <input type="submit" value="Ввод"><input type="reset" value='Очистить'>
+    <button class="input_button" type="submit" id="sub_button" >Ввод</button>
+	<button class="input_button" type="reset" >Очистить</button>
+
 </form>
 </div>
+	<div class="pusher"></div>
+	</div>
+
+<script type="text/javascript" src="{% static 'interface/js/input.js' %}"></script>
 {% endblock%}

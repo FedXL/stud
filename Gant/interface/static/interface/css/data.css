@@ -1,0 +1,78 @@
+table {
+    margin-top: 50px;
+    border: 2px solid #3a374c;
+    margin-right: auto;
+    margin-left: auto;
+    border-collapse: collapse;
+}
+
+ td {
+     padding: 0px 5px 0px 5px;
+    border: 1px solid #3a374c;
+    background-color: white;
+    min-width: 30px;
+    text-align: center;
+     max-width: max-content;
+
+}
+
+ .table_button{
+     background-color: #696a9f;
+     min-width: 70%;
+     margin-left: 10px;
+     margin-right: 10px;
+     min-height: 100%;
+     border-radius: 5px;
+     color: white;
+     text-align: center;
+
+ }
+
+
+ .input_details{
+     max-width: 25px;
+ }
+
+ .input_td{
+     text-align: center;
+     background-color: rgba(176, 172, 234, 0.1);
+     -webkit-appearance: none;
+ }
+
+
+ form {
+     letter-spacing: 1px;
+     justify-content: center;
+ }
+
+  .input_button{
+      width: 100%;
+	  margin-top: 10px;
+	  padding: 10px 20px;
+	  border: none;
+	  border-radius: 5px;
+	  color: white;
+	  background: rgba(52,79,121);
+	  outline: none;
+	  cursor: pointer;
+	  transition: 0.3s;
+      font-size: 20px;
+
+
+
+ }
+
+ .input_button:focus,
+ .input_button:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+}
+
+
+  .table_button:focus,
+  .table_button:hover{
+      background-color: rgba(36, 38, 38, 0.5)
+  }
+
+   input[type=number]::-webkit-inner-spin-button,
+ input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none; margin: 0; }

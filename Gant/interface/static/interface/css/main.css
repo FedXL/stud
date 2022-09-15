@@ -1,0 +1,175 @@
+html,body{
+	height: 100%;
+}
+
+body{
+	font-size: 16px;
+	min-width: 320px;
+	position: relative;
+	line-height: 1.65;
+	overflow-x: hidden;
+	opacity: 1;
+	height: 100%;
+}
+
+
+header{
+	margin-top: 30px;
+	max-width: 100%;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	padding-bottom: 20px;
+	border-bottom: 2px solid rgba(52,79,121);
+	justify-content: space-between;
+}
+
+
+
+header .logo{
+	max-width: 100px;
+	margin-right: 50px;
+	margin-left: 30px;
+}
+
+header .mnu{
+	list-style-type: none;
+}
+
+header .mnu li {
+	display: inline-block;
+	margin-right: 75px;
+}
+
+header .mnu li a{
+	display: block;
+	text-decoration: none;
+	font-size: 25px;
+	font-weight: 500;
+	-webkit-transition: .4s ease ;
+	-o-transition: .4s ease;
+	transition: .4s ease;
+}
+
+header .mnu li a:hover{
+	color: #3a374c;
+}
+
+
+
+header .btns{
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	margin-right: 50px;
+	font-size: 20px;
+}
+
+header .btns .btn_enter{
+	border-style: groove;
+	border-color: blue;
+	border-width: thin;
+	margin-right: 20px;
+	margin-left: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+header .btns .btn_register{
+	border-style: groove;
+	border-color: blue;
+	border-width: thin;
+	margin-right: 10px;
+	margin-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+header .btns .btn_exit{
+	border-style: groove;
+	border-color: blue;
+	border-width: thin;
+	margin-right: 10px;
+	margin-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+
+
+  .start{
+	  background: rgba(52,79,121);
+	  max-width: 100%;
+	  width: 100%;
+	  font-size: 30px;
+	  color: white;
+	  margin-top: 150px;
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+  }
+
+  h1{
+	  font-size: 25px;
+	  margin-bottom: 20px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  color: rgba(22, 22, 148, 0.95);
+	  text-align: center;
+  }
+
+
+  .a_button{
+      border: 1px solid #3a374c;
+      padding: 5px 10px 5px 10px;
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+
+  .a_button:focus,
+  .a_button:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+}
+
+  .container{
+     overflow-x: auto;
+     justify-content: center;
+     margin-left: auto;
+     margin-right: auto;
+
+ }
+
+  .BoxMaster{
+     min-height: calc(100% - 164.17px);
+     margin-bottom: -82px;
+
+
+ }
+
+ .pusher {
+     min-height: 82px;
+ }
+
+ footer{
+    display: flex;
+	 background-color: #aaaace;
+    justify-content: center;
+	border-top: 2px solid #3a374c;
+	 max-width: 100%;
+}
+
+  .f_cont{
+     display: flex;
+     align-items: center;
+     max-width: 500px;
+     width: 100%;
+ }
+
+ .c_cont {
+     margin-left: auto;
+     margin-right: auto ;
+
+ }

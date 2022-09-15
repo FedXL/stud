@@ -1,38 +1,118 @@
 {% extends 'interface/base.html' %}
 {% block content %}
-<h1>{{title}}</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'interface/css/data.css'%}" type="text/css">
+<div class="BoxMaster">
+<h1>Редактировать текущий сет деталей</h1>
+<p>{{pocket}}</p>
+<ul>
+<li><button class="a_button"> <a href="{%url 'input_page'%}">Ввод данных</a></button></li>
+</ul>
+<div class="container">
 <form action="{%url 'data_info'%}" method="post" name="form" enctype="multipart/form-data">
 	{% csrf_token %}
-	<table border="2px">
+	<table id = "super_table">
 		<thead>
 		<tr>
-			<th colspan="{{sr_num}}"> Параметры полученные в результате фигни</th>
-		</tr>
-
-		</thead>
-
-		<tr>
-			<td>Номер детали</td>
+			<td>Дет. / Ст. </td>
 			{% for i in st %}
-			<td>Станок: {{i}} </td>
+			<td>Ст. {{i}} </td>
 			{% endfor %}
+			<td>Удалить</td>
 		</tr>
+		</thead>
+		<tbody id="super">
 			{% for i in date %}
 			{% with forloop.counter0 as row_number %}
-
 		<tr>
-			<td>деталь_{{forloop.counter0}}</td>
+			<td>Деталь-{{forloop.counter0}}</td>
 			{% for j in i %}
-			<td><input type="text" value="{{j}}" name = '{{row_number}},{{forloop.counter0}}'></td>
+			<td class="input_td"><input class="input_details" required="required" type="number" min="0" max="500" value="{{j}}" name = '{{row_number}},{{forloop.counter0}}' id="input_{{row_number}},{{forloop.counter0}}"></td>
 			{% endfor %}
-			<td><input type="button" value="X" name = 'del,{{row_number}},{{forloop.counter0}}'></td>
+			<td><button type="button"  id="{{row_number}}" class="table_button" onclick="deleteRow(this)"
+						name = 'del,{{row_number}},{{forloop.counter0}}'>X</button></td>
 		</tr>
 			{% endwith %}
 			{% endfor %}
-
-		<th colspan="{{sr_num}}"><input type="button" value="Добавить деталь", name="add_detail"></th>
+		</tbody>
+		<tfoot>
+		<tr>
+			<th colspan="{{sr_num}}"><button class="table_button" type="button" onclick="addRows()">ADD ROWS</button></th>
+		</tr>
+		</tfoot>
 	</table>
-<button>сохранить</button>
-
+<br>
+<button type="submit" class="input_button">Cохранить/Продолжить</button>
 </form>
+</div>
+	<div class="pusher"></div>
+</div>
+<script type="text/javascript">
+
+function makeName(){
+    var table = document.getElementById("super");
+    for (let value of table.children){
+        let stec = value.children;
+        let RowIndex = value.rowIndex-1;
+        let countStec = stec.length -1
+        console.log("steclength",countStec);
+        for(let i = 0 ; i<countStec; i++){
+
+            if (i===0){
+            stec[i].textContent = `Деталь-${RowIndex}`;
+            console.log("Деталь",i)
+            } else if(i === countStec){
+                console.log("Button",i);
+            } else {
+            console.log("input",i);
+            stec[i].firstChild.name = `${RowIndex},${i-1}`;
+            }
+
+        }
+
+    }
+
+}
+
+function addRows() {
+    var table = document.getElementById("super");
+    var rowCount = table.rows.length;
+    var cellCount = table.rows[0].cells.length;
+    var row = table.insertRow(-1);
+	console.log(cellCount,rowCount)
+    for (let i = 0; i<cellCount; i++){
+        var cell = row.insertCell(i);
+		if (i===0) {
+		cell.innerHTML=`Деталь-${rowCount}`;
+		} else if (i===cellCount-1) {
+		cell.innerHTML=`<button onclick="deleteRow(this)" class="table_button">X</button>`;
+		var butt = cell.firstChild;
+		butt.id = `${rowCount}`
+		} else {
+		cell.classList.add('input_td')
+		cell.innerHTML='<input required="required" type="number" min="0" max="500" class="input_details">';
+		var input = cell.firstChild;
+		input.name = `${rowCount},${i-1}`;
+		console.log(cell);
+		}
+    }
+}
+
+function deleteRow(r){
+	var table = document.getElementById('super');
+	var rowCount = table.rows.length;
+	if (rowCount >'2'){
+		var i = r.parentNode.parentNode.rowIndex;
+  		document.getElementById("super_table").deleteRow(i);
+		makeName();
+	}
+	else{
+		alert('Должно оставаться хотя бы 2 детали');
+	}
+
+}
+
+
+
+</script>
 {% endblock %}

@@ -1,52 +1,70 @@
 {% extends 'interface/base.html' %}
 {% block content %}
-<h1>Заглушка на выбор очереди</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'interface/css/turn_changer.css'%}" type="text/css">
+<div class="BoxMaster">
 <div>
+    <ul>
 {% for i in submenu %}
-<a href="{% url i.url_name %}">{{i.title}}</a>
+<li><button class="a_button"> <a href="{%url i.url_name%}">{{i.title}}</a></button></li>
 {% endfor %}
+    </ul>
 </div>
 <br>
 <br>
-
 <form action="{%url 'turn' %}" method="post">
     {% csrf_token %}
+    <h1>Выбор параметров эксперимента</h1>
     <div>
-        <p>Выбор метода для расчёта очередности подачи деталей на линию:</p>
+        <p>Доступные методы:</p>
+        <br>
     </div>
     <div>
-    <input type="radio" value="spt" name="spt+ltp" id = 'spt1'>
-    <label>SPT</label>
-    <input type="radio" value="ltp" name="spt+ltp" id = 'lpt1'>
-    <label>LTP</label>
+
+    <input  type="radio" value="spt" name="spt+ltp" id = 'spt-1'>
+    <label title="Если время обработки детали на данной операции минимально,
+     то эта деталь обрабатывается в первую очередь." for="spt-1" >SPT</label>
+
+    <input type="radio" value="ltp" name="spt+ltp" id = 'lpt-1'>
+    <label title="Если время обработки детали на данной операции максимально,
+     то эта деталь обрабатывается в первую очередь." for="lpt-1">LTP</label>
     </div>
     <div>
     <input type="radio" value="lukr" name="lukr+mwkr">
-    <label>LUKR</label>
+    <label title="Если длительность всех оставшихся операций обработки для
+    детали минимальна, то данная деталь обрабатывается первой." >LUKR</label>
     <input type="radio" value="mwkr" name="lukr+mwkr">
-    <label>MWKR</label>
+    <label title="Если у данной детали длительность всех оставшихся операций
+     по обработке максимальна, то она обрабатывается первой." >MWKR</label>
     </div>
     <div>
     <input type="radio" value="fopnr" name="fopnr+anti">
-    <label>FOPNR</label>
+    <label title="Если количество невыполненных операций по обработке детали
+     минимально, то эта деталь обрабатывается первой." >FOPNR</label>
     <input type="radio" value="antifopnr" name="fopnr+anti">
-    <label>ANTIFOPNR</label>
+    <label title="Если количество невыполненных операций по обработке детали
+    максимально, то эта деталь обрабатывается первой.">ANTIFOPNR</label>
     </div>
     <div>
     <input type="radio" value="random" name = "random">
-    <label>RANDOM</label>
+    <label title="Cлучайный выбор" >RANDOM</label>
     </div>
+
+
+
+
+    <br>
     <div>
-    <button type="submit">Рассчитать очередность</button>
-    <button type="reset">Сброс настроек</button>
+    <button class="input_button" type="submit">Принять/Далее</button><button class="input_button" type="reset">Сброс настроек</button>
     </div>
 </form>
 
 <br>
 <br>
+<button style="margin-left: auto; margin-right: auto">Отобразить текущий сет</button>
+<div class="table_cont">
 
-Сет данных:
-<table border="2px">
+<table>
     <tr>
     <th>Детали/Станки</th>
         {%for n in context.number_st%}
@@ -55,15 +73,15 @@
         </tr>
     {%for n in context.details%}
     <tr>
-    <td>деталь-{{forloop.counter0}}</td>
+    <td>Деталь-{{forloop.counter0}}</td>
         {%for j in n%}
     <td>{{j}}</td>
         {%endfor%}
-
     </tr>
     {%endfor%}
 
 </table>
-
-
+</div>
+    <div class="pusher"></div>
+</div>
 {% endblock %}

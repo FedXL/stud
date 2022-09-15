@@ -2,7 +2,6 @@ import random
 from dataclasses import dataclass
 from random import sample
 
-
 class Data:
     """генератор, заполнитель случайных значений для начала эксперимента"""
 
@@ -20,7 +19,6 @@ class Data:
         for i in args:
             if type(i) != int:
                 raise TypeError(f"Введеное значение: {i} в класс Data должны быть integred а не {type(i)}")
-
         return True
 
 
@@ -74,7 +72,6 @@ def normilaze1(a, b):
     for i in range(1, b[0] + 1):
         change_stec(stec, i, 0, lvl)
     stec_to_masiv(a, 0, stec)
-
     return a
 
 
@@ -84,11 +81,8 @@ def finder(det, stec, placer=0):
     if det in stec:
         n1 = finder_last(det, stec)
         n1 = n1 + 1
-
     elif det not in stec and det > 1:
-
         for i in range(det - 1, 0, -1):
-
             n1 = finder_last(i, stec)
             if n1 != 0:
                 return n1 + 1
@@ -122,14 +116,11 @@ def change_stec(stec, det, placer, lvl):
         return stec
 
     while True:
-
         if placer >= len(stec):
             break
-
         if stec[placer] != 0:
             placer += 1
             continue
-
         if stec[placer] == 0:
             for i in range(placer, len(stec)):
                 if stec[i] == det:
@@ -143,7 +134,6 @@ def change_stec(stec, det, placer, lvl):
             stec[det_i] = 0
         else:
             break
-
     return stec
 
 
@@ -187,9 +177,7 @@ def normilaze3(massiv, spec_massiv):
             if lvl != spec_massiv[1] - 1 and det != 1:
 
                 x = down_coords
-
                 down_coords = finder(det, stec)
-
                 if down_coords == 0 and x != 0:
                     down_coords = x
 
@@ -198,7 +186,6 @@ def normilaze3(massiv, spec_massiv):
 
 # запуск
 def run(sets, details_set):
-
     AA = details_set
     #BB = (new_set.det, new_set.st)
     BB = (sets[0], sets[1])
@@ -450,6 +437,7 @@ def calculate_effective_rating(stec)-> float:
     devider = stec.last_nonzero +1 - stec.first_nonzero
     numerator = stec.stec[stec.first_nonzero:stec.last_nonzero].count(0)
     result = 100 - (numerator/devider)*100
+    result=round(result,2)
     return result
 
 def calculate_effective_rating_sum(a_dict:dict)->float:
@@ -459,7 +447,9 @@ def calculate_effective_rating_sum(a_dict:dict)->float:
     b = dict(b)
     for i in b:
         sum += i['corfficient']
-    return sum/len(a_dict)
+    rating = sum/len(a_dict)
+    rating =round(rating,2)
+    return rating
 
 
 @dataclass
@@ -792,6 +782,7 @@ class Turn:
         формирования таблицы рейтингов.
         return:
         """
+
         if 'random' in methods:
             self.random()
             return
@@ -851,3 +842,61 @@ def rating_table_list(methods,date):
         for j in date.values():
             del j[i]
     return date
+
+
+def validate_input(s):
+    details = int(s['st1'])
+    tools = int(s['st2'])
+    series = int(s['st3'])
+
+    message = "all right"
+
+    if 50*50*2 > details*tools*series > 25*25*2:
+        message = f"Упс! Вы хотите слишком многого." \
+                  f"Сумма сета-{details*tools*series} и она превышает" \
+                  f" 25*25*2 ,скорее всего на финальной стадии эксперимента ничего" \
+                  f"не получится. Вам точно нужно так много?"
+        return True, message
+
+    elif details*tools*series > 50*50*2:
+        message = f"Упс! Вы хотите очень многого." \
+                  f"Сумма сета - {details*tools*series},<br>" \
+                  f"что превышает все мыслимые и немыслимые значения. <br>" \
+                  f"Я отказываюсь это считать!"
+        return None, message
+    else:
+        return True, message
+
+def validate_save(s:dict, voc_set:(int,int,int))->(bool, str):
+    """Функция для проверки валидности значений формы (Детали-очередь)
+    и (Очередь-Детали)
+
+    s - request.POST
+    set - из vocabulary параметры (детали,станки,серии)
+    """
+    print("validate_save: start")
+    name = s['table']
+    post_set = s['turns']
+    print('post_set', post_set)
+    turn_set = [int(turn) for turn in post_set]
+    details = voc_set[0]
+    print("details:", details)
+    message = "All Right"
+    print("name:", name)
+
+    if len(set(turn_set)) != details:
+        message = "Двум деталям присвоена одна очередь"
+        return False, message
+    if max(turn_set) != details-1:
+        message = "Одно из значений в очереди превышает колличество деталей"
+        return False, message
+    elif min(turn_set) != 0:
+        message = "Одно из значений в очерeди отрицательное"
+        return False, message
+    return True, message
+
+
+
+
+
+

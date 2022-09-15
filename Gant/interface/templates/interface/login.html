@@ -1,0 +1,11 @@
+{% extends "interface/base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'interface/css/valid_form.css'%}" type="text/css">
+<h1>Войти</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+{% endblock %}
