@@ -143,18 +143,19 @@ header .btns .btn_exit{
  }
 
   .BoxMaster{
-     min-height: calc(100% - 164.17px);
-     margin-bottom: -82px;
+     min-height: calc(100% - 174.17px);
+     margin-bottom: -100px;
 
 
  }
 
  .pusher {
-     min-height: 82px;
+     min-height: 100px;
  }
 
  footer{
     display: flex;
+	 height: 100px;
 	 background-color: #aaaace;
     justify-content: center;
 	border-top: 2px solid #3a374c;

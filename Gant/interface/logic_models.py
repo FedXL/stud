@@ -1,5 +1,4 @@
 from typing import Tuple, List, Union, Any
-
 from django.db.models import Max
 from interface.models import *
 from django.contrib.sessions.models import Session
