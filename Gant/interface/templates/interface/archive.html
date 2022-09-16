@@ -8,7 +8,7 @@
 <input type="hidden" id="For_JS_ChangeURL" value="{% url 'archive'%}">
 {%if request.user.is_authenticated%}
 
-    <div class="container" >
+    <div class="container">
         <ul>
             {% for i in context%}
 
@@ -16,18 +16,35 @@
                     <form action="{% url 'data_info'%}" method="get">
                         {% csrf_token %}
                         <input type="hidden" name="record_id" value="{{i.id}}">
+
                         <li>
+                            <div class="li_cont">
                             <button type="button" onclick="OpenInput(this)" id="{{forloop.counter}}"
                             style="border: #3a374c solid 1px">
-                                {{i.explain}}
-                                {{i.method}}
-                                {{i.rating}}%
-                                {{i.details}}
-                                {{i.tools}}
-                                {{i.series}}
+                                <div class="string-button">
+                                    <div class="explain1">
+                                        {{i.explain}}
+                                    </div>
+                                    <div class="parametrice">
+                                        {{i.details}}
+                                        {{i.tools}}
+                                        {{i.series}}
+                                    </div>
+                                        {% for j in i.method%}
+                                            <div class="method-{{j}}">
+                                                {{j}}
+                                            </div>
+                                        {% endfor %}
+                                    <div style="border: #3a374c 1px solid">
+                                        {{i.rating}}%
+                                    </div>
+                                </div>
                             </button>
-                            <button type="submit" style="background: #3a374c">ooo</button>
-                            <button style = "background: #696a9f" type="button" onclick = "ChangeURL(this)" id="R{{forloop.counter}}">xxx</button>
+                                <div>
+                            <button class="Arch_button" type="submit" style="background: #3a374c">Использовать</button>
+                            <button class="Arch_button" type="button" style = "background: #696a9f" type="button" onclick = "ChangeURL(this)" id="R{{forloop.counter}}">Удалить</button>
+                                </div>
+                                </div>
                         </li>
                     </form>
                 </div>
@@ -79,7 +96,8 @@
     function ChangeURL(r) {
         var button = r.id;
         console.log(button)
-        var form = document.getElementById(button).parentNode.parentNode;
+        var form = document.getElementById(button).parentNode.parentNode.parentNode.parentNode;
+        console.log(form)
         form.action = document.getElementById('For_JS_ChangeURL').value
         var button2 = document.getElementById(button).previousSibling.previousSibling;
         console.log(button2)

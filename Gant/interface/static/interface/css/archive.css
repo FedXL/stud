@@ -2,12 +2,19 @@
  .container{
      margin-right: auto;
      margin-left: auto;
-     max-width: max-content;
+     max-width: 800px;
      padding: 20px 20px 20px 20px;
      border: #3a374c solid 1px;
 
  }
 
+ .li_cont{
+     display: flex;
+     flex-direction: column;
+     border: #3a374c 2px solid;
+     margin: 5px;
+
+ }
 
 
  .f_cont{
@@ -22,3 +29,55 @@
      margin-right: auto ;
 
  }
+
+ .method-spt, .method-ltp{
+     border: #3a374c 1px solid;
+     background-color: rgba(110, 110, 213, 0.5);
+     color: #ffffff;
+ }
+ .method-lukr, .method-mwkr{
+     border: #3a374c 1px solid;
+     background-color: #d8d8e7;
+     color: #5E5694; }
+
+  .method-fopnr, .method-antifopnr{
+     border: #3a374c 1px solid;
+     background-color: #ffffff;
+     color: rgba(36, 38, 38, 0.7);}
+
+  .method-random{
+      border: #5E5694 1px solid;
+      background-color: #ef7a79;
+      color: rgba(255, 253, 253, 0.7);
+  }
+
+  .string-button div {
+      max-width: max-content;
+      padding: 5px ;
+      margin: 2px ;
+  }
+
+  .string-button{
+      display: flex;
+  }
+  .Arch_button {
+      color: #aaaace;
+      padding: 5px 5px 5px 5px;
+      margin: 2px;
+  }
+
+  .explain1{
+      word-wrap: anywhere;
+      background-color: #aaaace;
+      border: #3a374c 1px solid;
+      color: rgba(15, 15, 31, 0.7);
+      min-width: 50%;
+      max-width: 50%;
+  }
+
+  .parametrice{
+      background-color: #dbebff;
+      border: #3a374c 1px solid;
+      min-width: 69px;
+
+  }

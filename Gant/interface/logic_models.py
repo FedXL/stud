@@ -270,6 +270,8 @@ def kill_zero(a):
     """убирает хвостик из нулей из первого стека
     (стек для построения картинки диаграммы)"""
     x = a['lvl_0']['date']
+    print(type(x))
+    print(x)
     kill_index = x.index(0)
     xx = x[:kill_index]
     print(xx)
@@ -323,7 +325,7 @@ def add_to_archive(request):
 def get_from_archive(request):
     """Вытаскивает из архива данные и прерващает их в контекст
     Из реквестав берёт юзера"""
-    print('%'*500)
+    print("get_from_archive: start")
     user_pk = request.user.pk
     user = User.objects.get(pk=user_pk)
     d = ArchiveLetter.objects.filter(name=user)
@@ -332,10 +334,16 @@ def get_from_archive(request):
     for i in d.values():
         j = ArchiveData.objects.filter(record_number=i['id'])
         z = j.values()
-        print(i)
-        print(type(i))
+        make_list = i['method']
+        make_list = make_list.replace('[', '')
+        make_list = make_list.replace(']', '')
+        make_list = make_list.replace("'", "")
+        make_list = make_list.replace(" ", "")
+        make_list = make_list.split(',')
+        i['method'] = make_list
         stec2 = stec_returner(z)
         i['data'] = stec2
+        print(i.get('data'))
         context.append(i)
 
     return context
@@ -343,21 +351,23 @@ def get_from_archive(request):
 
 def stec_returner(a: list) -> tuple:
     """utils for get_from_archive"""
-    print('start funk: stec_returner', "*" * 50)
+    print('start func: stec_returner', "*" * 50)
     big_stec = []
     stec = []
+
     for i in a:
         x = i['detail_tools_number']
         if x == 0:
-            if len(stec)>0:
+            if len(stec) > 0:
                 big_stec.append(tuple(stec))
-
             stec = []
         stec.append(i['detail_time'])
+    big_stec.append(tuple(stec))
     print(big_stec)
+    print('stec_returner: end func' )
     return big_stec
 
 def del_records_from_archive(request):
     id = request.GET.get('record_id')
-    a = ArchiveLetter.objects.get(id = id)
+    a = ArchiveLetter.objects.get(id=id)
     a.delete()

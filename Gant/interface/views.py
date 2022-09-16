@@ -340,6 +340,7 @@ def result(request):
 
     vocabulary = {'details': series[0], 'tools': series[1], 'series': series[2],
                   'methods': get_methods_from_vocabulary(key)}
+
     a = kill_zero(a)
     max_l = max_length(a)
     return render(request, 'interface/result.html', {'data': json.dumps(a),

@@ -23,6 +23,13 @@
     <input type="hidden" name="method" value="{{avocabulary.methods}}">
     <button  class="a_button" onclick="addExplain()"> СОХРАНИТЬ РЕЗУЛЬТАТЫ В АРХИВ</button>
 </form>
+
+<div class="container" >
+<canvas id = "canvas_plot" width="10000" height = "500"></canvas>
+</div>
+
+
+
 <div class="container2">
     <div>
     <table>
@@ -57,9 +64,6 @@
     </div>
 </div>
 
-<div class="container" >
-<canvas id = "canvas_plot" width="10000" height = "500"></canvas>
-</div>
 
 
 <script type="text/javascript" >
@@ -80,6 +84,11 @@ const ctx = canvasPlot.getContext('2d');
 
 var colors = ['white','blue','yellow','purple','orange','red','green','grey','lime','fuchsia',
 'maroon','navy'];
+let newarr = colors.slice(1)
+console.log(newarr)
+var multi = colors.concat(newarr).concat(newarr).concat(newarr).concat(newarr)
+
+
 
 ctx.strokeStyle = 'black';
 var mydata2 = "{{data}}";
@@ -107,7 +116,7 @@ for (var i in data2) {
     ctx.fillText("Станок- "+n+" ",100, y+20);
     for (var j in data2[i].date){
 
-        let color = colors[data2[i].date[j]];
+        let color = multi[data2[i].date[j]];
         draw(x,y);
         ctx.fillStyle = color;
         ctx.fillRect(x,y,25,25);
