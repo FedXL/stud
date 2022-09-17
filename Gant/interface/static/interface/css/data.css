@@ -76,3 +76,8 @@ table {
    input[type=number]::-webkit-inner-spin-button,
  input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none; margin: 0; }
+
+ .input_td:focus,
+ .input_td:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+}
