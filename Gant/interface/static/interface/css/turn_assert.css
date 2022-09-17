@@ -18,8 +18,8 @@
 
   .input_td{
      text-align: center;
+      width: 90px;
 
-      max-width: 20px;
  }
  .special_td{
      background-color: #aaaace;
@@ -67,4 +67,11 @@ input[type="number"]:hover,
 input[type="number"]:focus {
     appearance: none;
     -moz-appearance: textfield;
+}
+
+
+.special_td:focus,
+.special_td:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+
 }

@@ -105,7 +105,7 @@ header .btns .btn_exit{
 	  background: rgba(52,79,121);
 	  max-width: 100%;
 	  width: 100%;
-	  font-size: 30px;
+	  font-size: 25px;
 	  color: white;
 	  margin-top: 150px;
 	  padding-top: 10px;
@@ -174,3 +174,14 @@ header .btns .btn_exit{
      margin-right: auto ;
 
  }
+
+
+ .start:focus,
+ .start:hover {
+	background-color: rgba(36, 38, 38, 0.7);
+}
+
+
+.form_group input:focus {
+	border-bottom: 1px solid #242626B2 ;
+}

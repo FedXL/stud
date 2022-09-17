@@ -1,4 +1,3 @@
-
 {% extends 'interface/base.html' %}
 {% block content %}
 
@@ -6,38 +5,31 @@
 <div class="BoxMaster">
 
     {%if request.user.is_authenticated%}
-
-
-
         <h1>Добро пожаловать, {{request.user}}!</h1>
-        {%else%}
+            {%else%}
         <h1>Добро пожаловать, анонимный Пользователь!</h1>
-    {%endif%}
+            {%endif%}
         <div>
             <p>
-    Сайт был разработан для изучения эффективности построения диаграмм ганта,
-    для студентов кафедры К-9 МГТУ им. Баумана.
+                Сайт был разработан для изучения эффективности построения диаграмм ганта,
+                для студентов кафедры К-9 МГТУ им. Баумана.
             </p>
-                {% if request.user.is_authenticated %}
-                {% else %}
+            {% if request.user.is_authenticated %}
+            {% else %}
             <br>
-            <p><span>
-        Регистрироваться не обязательно, но
-        возможность сохранять результаты
-        экспериментов и пользоваться архивом предоставлена только авторизированный
-        пользователям.</span>
+            <p>
+                <span>
+                    Регистрироваться не обязательно, но
+                    возможность сохранять результаты
+                    экспериментов и пользоваться архивом предоставлена только авторизированный
+                    пользователям.
+                </span>
             </p>
-                {% endif %}
-
+            {% endif %}
         </div>
-    <form action="{% url button.url_name %}">
-        <button class="start"> Начать </button>
-    </form>
-    <div class="pusher">
-
-    </div>
-
-
-    </div>
-
+            <form action="{% url button.url_name %}">
+                <button class="start"> Начать </button>
+            </form>
+    <div class="pusher"></div>
+</div>
 {% endblock %}

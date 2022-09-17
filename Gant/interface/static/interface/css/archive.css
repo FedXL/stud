@@ -64,7 +64,15 @@
       color: #aaaace;
       padding: 5px 5px 5px 5px;
       margin: 2px;
+      background-color: rgba(209, 210, 241, 0.4);
+      border: 3px solid rgba(209, 210, 241, 0.4);
   }
+
+  .Arch_button:hover {
+     background-color: rgba(20, 20, 59, 0.5);
+      color: white;
+      border: #3a374c 3px solid;
+ }
 
   .explain1{
       word-wrap: anywhere;
@@ -81,3 +89,12 @@
       min-width: 69px;
 
   }
+
+ .rating{
+     background-color: #e6e6fa;
+ }
+ .str_button:hover {
+     background-color: rgba(20, 20, 59, 0.5);
+ }
+
+

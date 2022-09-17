@@ -15,12 +15,12 @@
                 <div>
                     <form action="{% url 'data_info'%}" method="get">
                         {% csrf_token %}
-                        <input type="hidden" name="record_id" value="{{i.id}}">
+                        <input type="hidden" class="hidden_input" name="record_id" value="{{i.id}}">
 
                         <li>
                             <div class="li_cont">
                             <button type="button" onclick="OpenInput(this)" id="{{forloop.counter}}"
-                            style="border: #3a374c solid 1px">
+                            class="str_button" style="border: #3a374c solid 1px">
                                 <div class="string-button">
                                     <div class="explain1">
                                         {{i.explain}}
@@ -35,14 +35,14 @@
                                                 {{j}}
                                             </div>
                                         {% endfor %}
-                                    <div style="border: #3a374c 1px solid">
+                                    <div class="rating" style="border: #3a374c 1px solid">
                                         {{i.rating}}%
                                     </div>
                                 </div>
                             </button>
                                 <div>
-                            <button class="Arch_button" type="submit" style="background: #3a374c">Использовать</button>
-                            <button class="Arch_button" type="button" style = "background: #696a9f" type="button" onclick = "ChangeURL(this)" id="R{{forloop.counter}}">Удалить</button>
+                            <button class="Arch_button" type="submit" >Использовать</button>
+                            <button class="Arch_button" type="button"  type="button" onclick = "ChangeURL(this)" id="R{{forloop.counter}}">Удалить</button>
                                 </div>
                                 </div>
                         </li>
@@ -65,18 +65,13 @@
         <p>
             Доступ к архиву предоставлен только авторизированным пользователям
         </p>
-
     </div>
 
 {% endif %}
 
 <div class="pusher">
-
 </div>
-
 </div>
-
-
 <script>
     function OpenInput(r){
         var button = r.id;
@@ -102,10 +97,8 @@
         var button2 = document.getElementById(button).previousSibling.previousSibling;
         console.log(button2)
         button2.click();
-
-
-
     }
+
 
 </script>
 {% endblock %}
